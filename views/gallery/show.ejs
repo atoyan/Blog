@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+
+
+
+<div class=container style="margin-top: 125px">
+    <h2> <%= album.name %>  </h2><br>
+<div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <% if(album.images.length>0) {%>
+        <% album.images.forEach(function(image){ %>
+        <%var str = image.path.slice(6)  %>
+        
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= str %>" class="img-thumbnail" >
+                    <div class="caption"> <%= image.filename %> 
+                    
+                    </div>
+            </div>
+        </div>
+        
+        <% }) } %>
+        </div>
+        <div>
+
+<% include ../partials/footer %>

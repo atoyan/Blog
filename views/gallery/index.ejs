@@ -1,0 +1,69 @@
+<% include ../partials/header %>
+
+
+    
+    
+
+   
+
+     
+
+      <div class="album py-5 ">
+        <div class="container" >
+        <hr>
+        <h1> ALBUMS </h1>
+        <hr>
+          <div class="row">
+          <% albums.forEach(function(album) { %>
+
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+              <p class="card-text"> <%= album.name %> </p>
+                <img class="card-img-top" src="https://shop.usa.canon.com/estore/marketing/ubu-prints/Ryan-Cheng.jpg" alt=" <%= album.name %> ">
+                <div class="card-body">
+                  <p class="card-text"> <%= album.desc %> </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a class="btn btn-outline-secondary padded" href="/gallery/<%= album._id %>">View</a>
+                      <% if(currentUser && currentUser.username.length>0) { %>
+                      <a class="btn btn-outline-secondary padded"  href="/gallery/<%= album._id %>/edit">Edit</a>
+                      <form action = "/gallery/<%= album._id %>/?_method=DELETE" method="POST"  class = "padded"> 
+                      <button id="delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this album?')">DELETE</button>
+                      </form>
+                      <% }%>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          <% }) %>
+          <% if(currentUser && currentUser.username.length>0) { %>
+          <div class="col-md-4" >
+                  
+          <div class="card mb-4 shadow-sm" >
+        
+            <div class="card-body">
+           <a href="/gallery/new"> <img class="card-img-top" src="/images/plus.png" alt="ADD NEW " href ="/gallery/new"  > </a>
+            <h3> <strong> ADD NEW </strong> </h3>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                 
+                </div>
+                
+              </div>
+            </div> 
+          </div>
+        </div> 
+
+        <% }%>
+
+          </div>
+        </div>
+      </div>
+     
+   
+
+
+<% include ../partials/footer%>

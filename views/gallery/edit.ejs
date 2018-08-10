@@ -1,0 +1,85 @@
+<% include ../partials/header %>
+<div class="container" id="bodycontainer">
+<% if(message && message.length>0) { %>
+    <div class="alert alert-success">
+    
+     <%= message %> </div>
+    
+     <% } %>
+
+<h2> EDIT : <%= album.name %> </h2>
+<hr>
+    </div>
+
+<div class = "container border rounded" style="margin-top: 125px " >
+       
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+    <% if(album.images.length>0) {%>
+    <% album.images.forEach(function(image){ %>
+    <%var str = image.path.slice(6)  %>
+    
+    
+    <div class="col-md-3 col-sm-6" style="padding-top: 10px ; padding-bottom : 10px">
+        <div class="thumbnail">
+                <form action="/gallery/<%= album._id %>/<%=image._id %>?_method=PUT" method="post" >
+            
+             <img src="<%= str %>" class="img-thumbnail" >
+                   <div class="caption"  value="<%= image.filename %>" > <%= image.filename %> <br>
+                           <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
+                </div>
+        </div>
+    </div>
+    
+    <% }) } %>
+    </div>
+   
+    </div>
+
+
+
+    
+
+
+
+    
+
+        
+    <div class="container"> 
+    <form action="/gallery/<%= album._id %>?_method=PUT" method="post">
+    
+    <div class="form-group">
+      <input type="submit"  value="UPLOAD" class="form-control" style="margin-top:12px">
+        </div>
+      
+    <hr>
+    </div>
+
+
+
+    <div class = "container">
+            <h2>All Uploads</h2>
+        <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+            
+            <% var count = 0 %>
+            <% pictures.forEach(function(image){ %>
+        <% var str = image.path.slice(6)   %>
+        
+        
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= str %>" class="img-thumbnail" >
+                    <input type="checkbox" name ="images[<%= count %>]"  value = "<%= image._id %>" >
+                    <div class="caption"> <%= image.filename %> 
+                    
+                    </div>
+            </div>
+        </div>
+        
+        <% count++ }) %>
+        
+        </div>
+        </div>
+    </form>
+
+<% include ../partials/footer %>

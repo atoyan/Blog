@@ -1,0 +1,31 @@
+<% include partials/header %>
+
+
+
+
+<div style="margin: 25px auto; width: 15%; padding-top: 100px;">
+
+<% if(message && message.length>0) { %>
+<div class="alert alert-danger">
+
+ <%= message %> </div>
+
+ <% } %>
+<h1 style="text-align: center" > Login</h1>
+        <hr>
+    <form action="/login" method="post">
+    <div class="form-group">
+    <input class="form-control" type="text" name = "username" placeholder="Username" required>
+    </div>
+    <div class="form-group">
+    <input class="form-control" type="password" name = "password" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+    <button class="btn btn-success" style="margin; width: 100% ">Login</button>
+    </div>
+
+</form>
+</div>
+
+
+<% include partials/footer %>

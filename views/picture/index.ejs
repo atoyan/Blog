@@ -1,0 +1,50 @@
+<% include ../partials/header %>
+
+<div class="container" id="bodycontainer">
+
+    <% if(message && message.length>0) { %>
+      <div class="alert alert-success">
+      
+       <%= message %> </div>
+      
+       <% } %>
+
+<hr>
+<form action="/pictures" method="post" enctype="multipart/form-data">
+<div class="form-group">  
+<input type="file" name="file" id="uploadfile" value="upload" multiple class="form-control" required>
+</div>
+<div class="form-group">
+  <input type="submit" id="upload" value="UPLOAD" class="form-control">
+    </div>
+  </form>
+<hr>
+</div>
+
+
+<div class = "container">
+<div class="row text-center" style="display: flex; flex-wrap: wrap;">
+
+<% pictures.forEach(function(picture){ %>
+<%var str = picture.path.slice(6)  %>
+
+<div class="col-md-3 col-sm-6">
+    <div class="thumbnail">
+        
+        <img src="<%= str %>" class="img-thumbnail" >
+            <div class="caption"> <%= picture.filename %> <br>
+              <form action="/pictures/<%=picture._id %>?_method=DELETE" method="post" style ="padding-bottom: 10px">
+              <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this album?')"> 
+            </form>
+            
+            </div>
+    </div>
+</div>
+
+<% }) %>
+</div>
+</div>
+
+
+
+<% include ../partials/footer %>
